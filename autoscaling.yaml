@@ -6,6 +6,7 @@ metadata:
     run: php-apache
   namespace: default
 spec:
+  replicas: 1
   selector:
     matchLabels:
       run: php-apache
@@ -21,11 +22,11 @@ spec:
           - containerPort: 80
           resources:
             limits:
-              memory: "100Mi"
-              cpu: "100m"
+              memory: "20Mi"
+              cpu: "50m"
             requests:
-              memory: "100Mi"
-              cpu: "100m"
+              memory: "20Mi"
+              cpu: "50m"
 ---
 apiVersion: v1
 kind: Service
@@ -38,6 +39,6 @@ spec:
   ports:
   - port: 80
     targetPort: 80
-    NodePort: 30080
+    nodePort: 30880
   selector:
     run: php-apache
